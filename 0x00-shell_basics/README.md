@@ -1,0 +1,1 @@
+This directory contains the scripts for the 0x00shell tasks
