@@ -1,1 +1,1 @@
-This repository is for the 0x00_shell project 
+This repository contains solutions to the ALX 0x00_shell project 
