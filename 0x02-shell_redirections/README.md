@@ -1,1 +1,0 @@
-The scripts in this directory satisfy the conditions for ALX 0x02-shell_redirections tasks
