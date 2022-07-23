@@ -25,3 +25,17 @@ then
 else
 	echo "dir not found"
 fi
+
+if [ -s "$file_name" ] # checks if a file is empty
+then
+	echo "File has data"
+else
+	echo "File is empty"
+fi
+
+if [ -x "$file_name" ] # checks executable rights, worke with -w -r etc permissions too
+then
+	echo "$file_name is executable"
+else
+	echo "$file_name is not executable"
+fi
