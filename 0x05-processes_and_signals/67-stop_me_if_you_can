@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# kills to infinity and beyond
+
+pkill -f 7-highlander

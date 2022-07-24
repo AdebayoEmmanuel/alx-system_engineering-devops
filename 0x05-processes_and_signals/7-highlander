@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# the sleep infinity amd beyond spills 
+# invincible when it recieves SIGTERM
+
+while true
+do
+	echo "To infinity and beyond"
+	sleep 2
+	trap 'echo "I am invincible!!!"' SIGTERM
+done
