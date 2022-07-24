@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# sends SIGKILL to 7-highlander tp kill it
+# cos SIGKILL cant be caught in a trap
+
+pkill -f -SIGKILL 7-highlander
