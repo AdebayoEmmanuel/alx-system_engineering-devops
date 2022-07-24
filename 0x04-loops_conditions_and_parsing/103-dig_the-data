@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# parses Apache log files in list fmt
+# groups visitors by IP and HTTP status code
+# sorted from maximum number of occurence to min
+
+awk '{ print $1 " " $9}' apache-access.log | sort | uniq -c | sort -rn
