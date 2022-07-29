@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# Pings an IP address recieved as an argument 5 times.
+
+if [ $# -eq 0 ]
+then
+	echo "Usage: 5-is_the"
