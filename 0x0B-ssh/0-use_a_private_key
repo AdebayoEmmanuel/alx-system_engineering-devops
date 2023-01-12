@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+# set path to private key
+key=~/.ssh/school
+
+# set user and host
+user=ubuntu
+host=100.24.255.131
+
+# establish ssh connection
+ssh -i $key $user@$host
