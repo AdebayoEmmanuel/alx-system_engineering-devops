@@ -1,3 +1,4 @@
+# this script creates a file school inside tmp
 file { '/tmp/school':
   ensure  => file,
   mode    => '0744',
