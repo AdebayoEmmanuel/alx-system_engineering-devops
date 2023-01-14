@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+#this script installs nginx on a server, verifies the port its listening on (80 by default) and serves a page that reads Hello World!
+
+sudo apt update
+sudo apt install nginx -y
+sudo service nginx start
+sudo apt install net-tools -y
+sudo netstat -tulnp | grep nginx
+sudo chown -R $(whoami):www-data /var/www/html
+sudo chmod -R 775 /var/www/html/
+sudo echo "Hello World!" > /var/www/html/index.html
