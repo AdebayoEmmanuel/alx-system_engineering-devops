@@ -1,0 +1,18 @@
+#!/bin/bash
+# Stop Nginx service
+sudo service nginx stop
+
+# Make nginx files readable and writable
+sudo chmod 7704 /etc/nginx/*
+
+# Backup the original nginx.conf
+sudo cp /etc/nginx/nginx.conf /etc/nginx/nginx.conf.bak
+
+# Add the custom header to the http context
+sudo sed -i 's/http {/http { \n    server_tokens off;\n    more_set_headers '"'"'X-Served-By: $hostname'"'"';/g' /etc/nginx/nginx.conf
+
+# Test the config
+sudo nginx -t
+
+# Restart Nginx service
+sudo service nginx start
