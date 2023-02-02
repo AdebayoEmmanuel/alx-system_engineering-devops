@@ -16,5 +16,5 @@ sed -i "s/user www-data;/user nginx;/" /etc/nginx/nginx.conf
 sed -i 's/#user nginx;/user nginx;/' /etc/nginx/nginx.conf
 
 # make nginx listen on 8080
-sudo sed -i 's/listen 80;/listen 8080;/g' /etc/nginx/sites-available/default
+sudo sed -i 's/listen 80;/listen 8080;/g' /etc/nginx/sites-enabled/default
 sudo service nginx restart
