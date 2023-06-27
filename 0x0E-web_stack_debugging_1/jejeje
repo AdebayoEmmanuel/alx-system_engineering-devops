@@ -1,0 +1,37 @@
+Here is an example of a Bash script that can be used to display information about subdomains:
+
+bash
+Copy code
+#!/bin/bash
+
+display_subdomain_info() {
+  domain=$1
+  subdomain=$2
+
+  if [ -z "$subdomain" ]; then
+    subdomains=(www lb-01 web-01 web-02)
+  else
+    subdomains=($subdomain)
+  fi
+
+  for subdomain in "${subdomains[@]}"; do
+    subdomain_info=$(dig $subdomain.$domain | awk '/ANSWER SECTION:/{getline; print}')
+    record_type=$(echo $subdomain_info | awk '{print $4}')
+    destination=$(echo $subdomain_info | awk '{print $5}')
+    echo "The subdomain $subdomain is a $record_type record and points to $destination"
+  done
+}
+
+display_subdomain_info "$1" "$2"
+This script defines a function called display_subdomain_info, which takes in two arguments: the domain name and an optional subdomain name. If the subdomain argument is not provided, the script will check the subdomains "www", "lb-01", "web-01", "web-02" in that order.
+
+The function uses a for loop to iterate through each subdomain and runs the command dig $subdomain.$domain which will query the DNS server for information about the subdomain.
+It then uses awk to extract the information we need, and prints it out in the desired format.
+
+To configure your domain zone so that the subdomains point to the correct IPs, you would need to log in to your domain provider's website and add the subdomains with their corresponding IPs using their DNS management tools.
+
+It's important to note that this script assumes that the dig command is installed on the system. Also, this script does not handle edge cases such as empty parameters or nonexistent domain names.
+
+
+
+

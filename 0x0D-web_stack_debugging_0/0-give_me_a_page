@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# This script checks if apache is running and restarts apache server
+
+/etc/init.d/apache2 status
+/etc/init.d/apache2 restart

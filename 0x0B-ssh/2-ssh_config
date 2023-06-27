@@ -1,0 +1,4 @@
+# ssh config file that specifies location to private key
+Host *
+     PasswordAuthentication no
+     IdentityFile ~/.ssh/school

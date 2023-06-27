@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+# configures nginx to run as nginx user
+
+#Create the nginx user if it doesn't already exist
+if ! id nginx &>/dev/null; then
+    sudo adduser --system --no-create-home --disabled-login --disabled-password --group nginx
+fi
+
+sudo service nginx stop
+sudo usermod -a -G www-data nginx
+sudo chown -R nginx:nginx /var/log/nginx
+sudo service nginx start
+
+# Update the user and group for the nginx process in the configuration file
+sed -i "s/user www-data;/user nginx;/" /etc/nginx/nginx.conf
+sed -i 's/#user nginx;/user nginx;/' /etc/nginx/nginx.conf
+
+# make nginx listen on 8080
+sudo sed -i 's/listen 80;/listen 8080;/g' /etc/nginx/sites-enabled/default
+sudo service nginx restart

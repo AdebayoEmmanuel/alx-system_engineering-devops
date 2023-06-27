@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# runs the whoami command as another user
+
+usr=$1
+
+sudo -u "$usr" whoami

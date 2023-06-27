@@ -1,0 +1,46 @@
+#!/usr/bin/env bash
+# This script installs and setup HAProxy load balancer 
+# on a new ubuntu machine, the LB is configured ti route requests ti
+# web-01 and web-02 servers using round robin algorithm
+
+sudo apt-get update
+
+# get net tools because of service/systemctl
+sudo apt-get install -y net-tools
+
+sudo apt-get install -y haproxy
+
+sudo bash -c 'cat > /etc/haproxy/haproxy.cfg << EOF
+global
+	log /dev/log local0
+	log /dev/log local1 notice
+	chroot /var/lib/haproxy
+	stats socket /run/haproxy/admin.soc mode 660 level admin
+	stats timeout 30s
+	user haproxy
+	group haproxy
+	daemon
+
+defaults
+	log global
+	mode http
+	option httplog
+	option dontlognull
+	timeout connect 5000
+	timeout client 50000
+	timeout server 50000
+
+frontend http
+	bind :80
+	default_backend shiwoshiwoservers
+
+backend shiwoshiwoservers
+	balance roundrobin
+	server web-01 100.24.255.131:80
+	server web-02 18.206.233.170:80
+
+EOF'
+
+#enable and start HAproxy service
+sudo systemctl enable haproxy
+sudo service haproxy start

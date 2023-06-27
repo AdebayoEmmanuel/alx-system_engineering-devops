@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+#This script copies a file from one server to another using scp
+
+# check if args < 3
+if [ $# -lt 3 ]; then
+	echo "Usage: 0-transfer_file PATH_TO_FILE IP USERNAME PATH_TO_SSH_KEY"
+	exit 1
+fi
+
+# assign passed params to var
+path_to_file=$1
+ip=$2
+username=$3
+ssh_key_path=$4
+
+# run the transfer
+scp -i "$ssh_key_path" -o StrictHostKeyChecking=no -q "$path_to_file" "$username"@"$ip":~
