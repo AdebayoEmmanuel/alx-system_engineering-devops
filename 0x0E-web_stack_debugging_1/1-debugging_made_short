@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 # short version of 0-nginx_likes_port_80
 sudo service nginx stop
-sudo sed -i 's/listen [0-9]\+;/listen 80;/g' /etc/nginx/nginx.conf
+sudo sed -i 's/listen [0-9]\+;/listen 80;/g' /etc/nginx/sites-available/default
 sudo service nginx start
