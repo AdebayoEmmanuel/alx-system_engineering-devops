@@ -3,6 +3,8 @@
 
 sudo service nginx stop
 
-sudo sed -i 's/listen [0-9]\+;/listen 80;/g' /etc/nginx/nginx.conf
+sudo sed -i 's/listen 8080/listen 80/g' /etc/nginx/sites-enabled/default
 
-sudo service nginx start
+sudo service nginx reload
+
+sudo service nginx restart
